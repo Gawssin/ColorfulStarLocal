@@ -15,28 +15,19 @@
 #include "../header/heapLLU.h"
 #include "../header/Graph.hpp"
 #include "../header/tool.hpp"
-#include "../header/ColorfulStarCoreOPT.hpp"
+#include "../header/ColorfulStarCore.hpp"
 
 using namespace std;
 
 int main(int argc, char **argv)
 {
-    char *argv1, *argv2, *argv3;
-    argv1 = argv[1], argv2 = argv[2];
-    // int basicFlag = 0, colorAlgo = atoi(argv[3]);
-    // if (argc >= 5 && strcmp(argv[4], "basic") == 0)
-    // {
-    //     basicFlag = 1;
-    // }
-
-    // cout << "Version: " << (basicFlag ? "Basic (HStarDP)" : "Advanced (HStarCD)") << endl << endl;
-
     auto t0 = getTime();
-
+    
+    // build a graph from the input file
     Graph g;
-    int h = atoi(argv1);
-    cout << "Reading edgelist from file: " << argv2 << endl;
-    g.readedgelist(argv2);
+    int h = atoi(argv[1]);
+    cout << "Reading edgelist from file: " << argv[2] << endl;
+    g.readedgelist(argv[2]);
     cout << "Reading edgelist finished!" << endl;
     g.mkGraph();
     cout << "mkGraph finished!" << endl;
@@ -66,8 +57,6 @@ int main(int argc, char **argv)
         int *newDeg = new int[g.n]();
         int *newCD = new int[g.n + 1];
 
-        
-        
         int *colorBak = new int[g.n];
         memcpy(colorBak, color, sizeof(int) * g.n);
         for (int i = 0; i < g.n; i++)
@@ -97,30 +86,14 @@ int main(int argc, char **argv)
 
     auto t1 = getTime();
 
-    
-
-    // for (int i = 0; i < g.n; i++)
-    // {
-    //     printf("%d -> %d\n", i, color[i]);
-    // }
-    
-    // auto t11 = getTime();
-    // printf("coloring time = %lf\n", ((double)timeGap(t1, t11)) / 1e6);
-
     __int128 **dp = new __int128 *[g.n];
     int **CC = new int *[g.n];
     __int128 *ColofulStarCoreNum = new __int128[g.n];
 
+    // initialize the colorful h-star degree for each node
     initColStarDegree(g, dp, h, colorNum, color, CC);
-
+    // compute the colorful h-star core decomposition
     ColorfulStarHIndex(g, dp, h, color, CC, ColofulStarCoreNum, colorNum, optimization);
-
-    // for (int i = 0; i < g.n; i++)
-    // {
-    //     printf("%d -> %s\n", i, _int128_to_str(dp[i][h - 1]));
-    // }
-
-    // ColorfulStarCoreDecomp(g, dp, h, color, CC, ColofulStarCoreNum, colorNum, basicFlag);
 
     auto t2 = getTime();
     printf("- Overall time = %lf\n", ((double)timeGap(t1, t2)) / 1e6);
@@ -128,7 +101,6 @@ int main(int argc, char **argv)
     if (argc >= 6)
     {
         ofstream outfile(argv[5], ios::out);
-
         if (optimization >= 2)
         {
             for (int i = 0; i < g.n; i++)
@@ -144,24 +116,6 @@ int main(int argc, char **argv)
 
         outfile.close();
     }
-
-    // study nodes' distribution
-
-    // if (argc >= 3)
-    // {
-    //     unordered_map<__int128, int> umap;
-    //     for (int i = 0; i < g.n; i++)
-    //     {
-    //         umap[dp[i][h - 1]]++;
-    //     }
-
-    //     ofstream outfile(argv[3], ios::out);
-
-    //     for (auto x : umap)
-    //         outfile << _int128_to_str(x.first) << " " << x.second << endl;
-
-    //     outfile.close();
-    // }
 
     return 0;
 }

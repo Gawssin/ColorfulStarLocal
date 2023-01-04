@@ -48,7 +48,7 @@ $ g++ -O3 -fopenmp -o corePeel corePeel.cpp
 ```
 $ ./corePeel h FilePath colorAlgo [basic]
 ```
-| Arguments  | Description |
+| Argument  | Description |
 | :-----| :---- |
 | **corePeel** | executable file |
 | **h** | the size of stars |
@@ -66,7 +66,7 @@ $ g++ -O3 -fopenmp -o Local Local.cpp
 ```
 $ ./Local h FilePath N_threads
 ```
-| Arguments  | Description |
+| Argument  | Description |
 | :-----| :---- |
 | **Local** | executable file |
 | **h** | the size of stars |
@@ -83,7 +83,7 @@ $ g++ -O3 -fopenmp -o LocalOPT LocalOPT.cpp
 ```
 $ ./LocalOPT h FilePath N_threads OPTtype
 ```
-| Arguments  | Description |
+| Argument  | Description |
 | :-----| :---- |
 | **LocalOPT** | executable file |
 | **h** | the size of stars |
@@ -102,7 +102,7 @@ $ g++ -O3 -fopenmp -o EdgeDel EdgeDel.cpp
 ```
 $ ./EdgeDel h FilePath N_Del RecompFlag N_threads
 ```
-| Arguments  | Description |
+| Argument  | Description |
 | :-----| :---- |
 | **EdgeDel** | executable file |
 | **h** | the size of stars |
@@ -122,7 +122,7 @@ $ g++ -O3 -fopenmp -o EdgeIns EdgeIns.cpp
 ```
 $ ./EdgeIns h FilePath N_Ins RecompFlag N_threads
 ```
-| Arguments  | Description |
+| Argument  | Description |
 | :-----| :---- |
 | **EdgeIns** | executable file |
 | **h** | the size of stars |

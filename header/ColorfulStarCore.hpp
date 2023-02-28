@@ -248,6 +248,14 @@ bool ubCMP(const pair<int, __int128> &a, const pair<int, __int128> &b)
     return a.second > b.second;
 }
 
+bool ubCMPRe(const pair<int, __int128> &a, const pair<int, __int128> &b)
+{
+    // return a.first < b.first;
+    if (a.second == b.second)
+        return a.first < b.first;
+    return a.second < b.second;
+}
+
 void compHIndex(Graph &g, int u, __int128 **dp, __int128 *uBound, int h, int *color, int **CC, int colorNum,
                 pair<int, __int128> *idUB, __int128 *NotColor, __int128 *MustColor, int *lastPos)
 {

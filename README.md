@@ -9,7 +9,7 @@ You can download a copy of all the files in this repository by cloning the [git]
 ```
 https://github.com/SGAOCR/ColorfulStarLocal.git
 ```
-or [download a zip archive](https://github.com/SGAOCR/ColorfulStarLocal/archive/refs/heads/main.zip).
+or [download a zip archive](https://github.com/Gawssin/ColorfulStarLocal/archive/refs/heads/main.zip).
 
 ## Dependencies
 ```
